@@ -1,5 +1,18 @@
 const { parse } = require("dotenv");
 const Hospital = require("../models/Hospital");
+const VacCenter = require("../models/VacCenter");
+
+
+exports.getVacCenters = (req,res,next) => {
+    VacCenter.getAll((err,data) => {
+        if (err)
+        res.status(500).send({
+            message:
+            err.message || "Some error occurred while retrieving Vaccine Centers."
+        });
+        else res.send(data);
+    });
+};
 
 exports.getHospitals= async (req,res,next) => {
     try{
